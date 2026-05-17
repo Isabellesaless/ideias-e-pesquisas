@@ -1,0 +1,34 @@
+# Catálogo de Filmes ou Livros Pessoal: Um projeto pessoal para organizar sua coleção, incluindo campos como título, autor/diretor, gênero e sua avaliação pessoal.
+# Banco de dados temporário
+catalogo = []
+
+while True:
+    print("\n--- MENU --- \n[1] Adicionar \n[2] Listar \n[3] Sair")
+    opcao = input("Escolha: ")
+
+    if opcao == "1":
+        # Cadastra o item coletando os dados do usuário
+        item = {
+            "tipo": input("Tipo (Livro/Filme): "),
+            "titulo": input("Título: "),
+            "criador": input("Autor/Diretor: "),
+            "genero": input("Gênero: "),
+            "nota": float(input("Nota (0 a 5): "))
+        }
+        catalogo.append(item)
+        print("✨ Adicionado!")
+
+    elif opcao == "2":
+        # Exibe os itens e calcula a média das notas
+        if not catalogo:
+            print("Catálogo vazio.")
+        else:
+            for i, item in enumerate(catalogo, start=1):
+                print(f"[{i}] {item['titulo']} ({item['tipo']}) - Autor/Dir: {item['criador']} - Gênero: {item['genero']} - Nota: {item['nota']}")
+            
+            media = sum(i['nota'] for i in catalogo) / len(catalogo)
+            print(f"📊 Média das notas: {media:.1f}/5")
+
+    elif opcao == "3":
+        print("Tchau! 👋")
+        break
